@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Comprimento</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<body>
+    <div class="main-login">
+        <div class="left-login">
+            <h1>Calculadora de<br> Medidas de Comprimento</h1>
+            <img class="left-login-image" src="calculator.svg" alt="Animação - Calculadora">
+        </div>
+        <div class="right-login">
+            <div class="card-login">
+                <h1>CALCULADORA</h1>
+                <div class="textfield">
+                    <label for="valor">Valor:</label>
+                    <input type="number" id="valor" name="valor">
+                </div>
+                <div class="textfield">
+                    <label for="de">De:</label>
+                    <select id="de" name="de" class="select">
+                        <option value="m">Metro</option>
+                        <option value="cm">Centímetro</option>
+                        <option value="mm">Milímetro</option>
+                    </select>
+                </div>
+                <div class="textfield">
+                    <label for="para">Para:</label>
+                    <select id="para" name="para" class="select">
+                        <option value="m">Metro</option>
+                        <option value="cm">Centímetro</option>
+                        <option value="mm">Milímetro</option>
+                    </select>
+                </div>
+                <button class="btn-login" onclick="converter()">Converter</button>
+                <div class="textfield">
+                    <label for="resultado">Resultado:</label>
+                    <input type="text" id="resultado" name="resultado" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+        function converter() {
+            var valor = parseFloat(document.getElementById("valor").value);
+            var de = document.getElementById("de").value;
+            var para = document.getElementById("para").value;
+            var resultado;
+            if (de === "m" && para === "cm") {
+                resultado = valor * 100;
+            } else if (de === "m" && para === "mm") {
+                resultado = valor * 1000;
+            } else if (de === "cm" && para === "m") {
+                resultado = valor / 100;
+            } else if (de === "cm" && para === "mm") {
+                resultado = valor * 10;
+            } else if (de === "mm" && para === "m") {
+                resultado = valor / 1000;
+            } else if (de === "mm" && para === "cm") {
+                resultado = valor / 10;
+            } else {
+                resultado = valor;
+            }
+            document.getElementById("resultado").value = resultado;
+        }
+
+    </script>
+</body>
+
+</html>
